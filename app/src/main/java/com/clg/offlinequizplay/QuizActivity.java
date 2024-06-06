@@ -28,6 +28,7 @@ public class QuizActivity extends AppCompatActivity {
     private  int seconds = 0;
     private final List<QuestionsList> questionsLists = new ArrayList<>();
 
+    private int currentQuestionPosition = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +53,11 @@ public class QuizActivity extends AppCompatActivity {
 
         selectedTopicName.setText(getSelectedTopicName);
 
+        questionsLists = QuestionBank.getQuestions(getSelectedTopicName);
+
+
         startTimer(timer);
+        questions.setText((currentQuestionPosition+1)+"/"+questionsLists.size());
         option1.setOnClickListener(new View.OnClickListener() {
                                        @Override
                                        public void onClick(View v) {
